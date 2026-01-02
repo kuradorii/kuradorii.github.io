@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Michael Dyck | Portfolio 2026</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Google Fonts (Inter + JetBrains Mono) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Custom Font Settings */
+        body { font-family: 'Inter', sans-serif; }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+
+        /* Custom Animations */
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .animate-marquee { animation: marquee 20s linear infinite; }
+        
+        .bg-grid-pattern {
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, rgba(0,0,0,0.05) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(0,0,0,0.05) 1px, transparent 1px);
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in-up {
+            animation: fadeInUp 0.5s ease-out forwards;
+        }
+
+        /* Selection Color */
+        ::selection {
+            background-color: black;
+            color: #ccff00;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f2f2f2;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: black;
+            border: 2px solid #f2f2f2;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ccff00;
+        }
+    </style>
+</head>
+<body class="bg-[#f2f2f2] text-black min-h-screen selection:bg-black selection:text-[#ccff00]">
+
+    <!-- STATUS BAR -->
+    <nav class="fixed top-0 left-0 w-full z-50 border-b-2 border-black bg-[#f2f2f2] px-4 py-3 flex justify-between items-center font-mono text-xs md:text-sm font-bold uppercase tracking-widest">
+        <div class="flex items-center gap-2">
+            <div class="w-3 h-3 bg-[#ccff00] border border-black animate-pulse"></div>
+            <span>SYSTEM: ONLINE</span>
+        </div>
+        <div class="hidden md:block text-center">
+            NEUSS / DÜSSELDORF
+        </div>
+        <div id="clock">00:00:00 CET</div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="relative pt-32 pb-12 md:pt-48 md:pb-24 px-4 md:px-6 border-b-2 border-black bg-grid-pattern min-h-[90vh] flex flex-col justify-between">
+        
+        <div>
+            <h1 class="text-[13vw] leading-[0.8] font-black tracking-tighter mix-blend-multiply text-center md:text-left mb-6 md:mb-0">
+                MICHAEL<br/>DYCK<span class="text-[#ccff00]">.</span>
+            </h1>
+        </div>
+
+        <div class="grid md:grid-cols-12 gap-8 border-t-2 border-black pt-8 mt-12">
+            <div class="md:col-span-5 font-mono text-sm md:text-base leading-relaxed">
+                <h2 class="font-bold text-xl uppercase mb-4">Mediengestalter & <br/>Kommunikationsdesign Student</h2>
+                <p class="mb-8 border-l-4 border-[#ccff00] pl-4">
+                    Mit Leidenschaft für visuelle Kommunikation gestalte ich kreative und funktionale Designs, 
+                    die Marken stärken und Ideen zum Leben erwecken.
+                </p>
+                <div class="flex flex-col md:flex-row gap-4">
+                    <a href="#work" class="relative inline-flex items-center gap-2 justify-center px-6 py-4 font-mono font-bold uppercase tracking-wider transition-all border-2 border-black w-full md:w-auto cursor-pointer select-none bg-black text-[#ccff00] shadow-[4px_4px_0px_0px_rgba(204,255,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(204,255,0,1)] hover:translate-x-[2px] hover:translate-y-[2px]">
+                        <i data-lucide="eye" class="w-4 h-4"></i> Portfolio
+                    </a>
+                    <a href="#contact" class="relative inline-flex items-center gap-2 justify-center px-6 py-4 font-mono font-bold uppercase tracking-wider transition-all border-2 border-black w-full md:w-auto cursor-pointer select-none bg-white text-black hover:bg-zinc-50 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px]">
+                        <i data-lucide="mail" class="w-4 h-4"></i> Kontakt
+                    </a>
+                </div>
+            </div>
+            
+            <div class="md:col-span-3 md:col-start-7 md:border-l-2 md:border-black md:pl-8">
+                <h4 class="font-bold underline decoration-2 underline-offset-4 mb-4 uppercase flex items-center gap-2">
+                    <i data-lucide="layers" class="w-4 h-4"></i> Tech Stack
+                </h4>
+                <div class="flex flex-wrap gap-2" id="skills-container">
+                    <!-- Skills injected by JS -->
+                </div>
+            </div>
+
+            <div class="md:col-span-3 md:border-l-2 md:border-black md:pl-8">
+                <h4 class="font-bold underline decoration-2 underline-offset-4 mb-4 uppercase flex items-center gap-2">
+                    <i data-lucide="zap" class="w-4 h-4"></i> Quick Links
+                </h4>
+                <ul class="space-y-3 font-mono text-sm font-bold">
+                    <li><a href="https://www.linkedin.com/in/michael-dyck-76498925a/" target="_blank" class="hover:text-lime-600 hover:translate-x-1 inline-block transition-transform">LINKEDIN_PROFILE</a></li>
+                    <li><a href="https://www.xing.com/profile/Michael_Dyck066981/web_profiles" target="_blank" class="hover:text-lime-600 hover:translate-x-1 inline-block transition-transform">XING_PROFILE</a></li>
+                    <li><a href="#" class="hover:text-lime-600 hover:translate-x-1 inline-block transition-transform">RESUME_V2.PDF</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <i data-lucide="corner-right-down" class="absolute top-24 right-6 md:right-12 w-16 h-16 text-black hidden md:block" stroke-width="3"></i>
+    </header>
+
+    <!-- MARQUEE -->
+    <div class="relative flex overflow-x-hidden border-y-2 border-black bg-[#ccff00] text-black py-3 select-none">
+        <div class="animate-marquee whitespace-nowrap flex space-x-8 items-center">
+            <!-- Content repeated for seamless loop -->
+            <span class="text-xl md:text-3xl font-black uppercase tracking-tighter flex items-center gap-4">DIGITAL & PRINT <i data-lucide="star" class="w-6 h-6 fill-black"></i></span>
+            <span class="text-xl md:text-3xl font-black uppercase tracking-tighter flex items-center gap-4">UX/UI DESIGN <i data-lucide="star" class="w-6 h-6 fill-black"></i></span>
+            <span class="text-xl md:text-3xl font-black uppercase tracking-tighter flex items-center gap-4">BRANDING <i data-lucide="star" class="w-6 h-6 fill-black"></i></span>
+            <span class="text-xl md:text-3xl font-black uppercase tracking-tighter flex items-center gap-4">CREATIVE DIRECTION <i data-lucide="star" class="w-6 h-6 fill-black"></i></span>
+            <span class="text-xl md:text-3xl font-black uppercase tracking-tighter flex items-center gap-4">DIGITAL & PRINT <i data-lucide="star" class="w-6 h-6 fill-black"></i></span>
+            <span class="text-xl md:text-3xl font-black uppercase tracking-tighter flex items-center gap-4">UX/UI DESIGN <i data-lucide="star" class="w-6 h-6 fill-black"></i></span>
+            <span class="text-xl md:text-3xl font-black uppercase tracking-tighter flex items-center gap-4">BRANDING <i data-lucide="star" class="w-6 h-6 fill-black"></i></span>
+            <span class="text-xl md:text-3xl font-black uppercase tracking-tighter flex items-center gap-4">CREATIVE DIRECTION <i data-lucide="star" class="w-6 h-6 fill-black"></i></span>
+        </div>
+    </div>
+
+    <!-- CV SECTION -->
+    <section id="cv" class="bg-black text-[#f2f2f2] py-24 px-4 md:px-6 border-b-2 border-[#ccff00]">
+        <div class="container mx-auto">
+            <div class="flex flex-col md:flex-row gap-16">
+                <div class="md:w-1/3">
+                    <span class="text-[#ccff00] font-mono text-xl mb-4 block">/// LOG_FILE.TXT</span>
+                    <h2 class="text-5xl md:text-6xl font-black uppercase leading-[0.9]">
+                        CAREER<br/>PATH
+                    </h2>
+                </div>
+                
+                <div class="md:w-2/3 space-y-12" id="history-container">
+                    <!-- History injected by JS -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS SECTION -->
+    <section id="work" class="bg-white relative">
+        <!-- TAB HEADER -->
+        <div class="border-b-2 border-black p-4 md:p-6 bg-white sticky top-[48px] z-40 shadow-sm">
+            <div class="container mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+                <h2 class="text-2xl md:text-4xl font-black uppercase tracking-tighter flex items-center gap-3">
+                    <i data-lucide="monitor" class="w-8 h-8"></i> Projects
+                </h2>
+                
+                <!-- Filter Tabs -->
+                <div class="flex flex-wrap justify-center gap-3 w-full md:w-auto" id="filter-buttons">
+                    <button data-filter="ALL" class="filter-btn relative inline-flex items-center gap-2 justify-center px-6 py-4 font-mono font-bold uppercase tracking-wider transition-all border-2 border-black w-full md:w-auto cursor-pointer select-none bg-black text-[#ccff00] shadow-[2px_2px_0px_0px_rgba(204,255,0,1)] translate-x-[2px] translate-y-[2px]">
+                        <i data-lucide="layout" class="w-4 h-4"></i> All
+                    </button>
+                    <button data-filter="UX/UI" class="filter-btn relative inline-flex items-center gap-2 justify-center px-6 py-4 font-mono font-bold uppercase tracking-wider transition-all border-2 border-black w-full md:w-auto cursor-pointer select-none bg-white text-black hover:bg-zinc-50 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px]">
+                        <i data-lucide="monitor" class="w-4 h-4"></i> UX/UI
+                    </button>
+                    <button data-filter="GRAFIK" class="filter-btn relative inline-flex items-center gap-2 justify-center px-6 py-4 font-mono font-bold uppercase tracking-wider transition-all border-2 border-black w-full md:w-auto cursor-pointer select-none bg-white text-black hover:bg-zinc-50 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px]">
+                        <i data-lucide="pen-tool" class="w-4 h-4"></i> Grafik
+                    </button>
+                    <button data-filter="PRIVAT" class="filter-btn relative inline-flex items-center gap-2 justify-center px-6 py-4 font-mono font-bold uppercase tracking-wider transition-all border-2 border-black w-full md:w-auto cursor-pointer select-none bg-white text-black hover:bg-zinc-50 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px]">
+                        <i data-lucide="user" class="w-4 h-4"></i> Privat
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- PROJECT LIST -->
+        <div id="projects-container" class="flex flex-col min-h-[50vh]">
+            <!-- Projects injected by JS -->
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="contact" class="bg-[#f2f2f2] pt-24 pb-12 px-4 md:px-6 border-t-2 border-black relative overflow-hidden">
+        <div class="container mx-auto relative z-10 text-center">
+            <span class="font-mono font-bold text-sm tracking-widest mb-4 block">INITIALIZE CONTACT PROTOCOL</span>
+            <h2 class="text-[10vw] font-black leading-none mb-12 hover:text-lime-500 transition-colors cursor-pointer select-none">
+                GET IN TOUCH
+            </h2>
+            
+            <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto mb-20">
+                <a href="mailto:michael.dyck96@gmail.com" class="group flex flex-col items-center justify-center p-8 bg-white border-2 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-1 hover:translate-y-1 transition-all">
+                    <i data-lucide="mail" class="w-8 h-8 mb-4 group-hover:text-lime-600"></i>
+                    <span class="font-bold text-lg md:text-xl break-all">michael.dyck96@gmail.com</span>
+                    <span class="font-mono text-xs text-zinc-500 mt-2">WRITE ME AN EMAIL</span>
+                </a>
+                
+                <a href="tel:+4917676856850" class="group flex flex-col items-center justify-center p-8 bg-white border-2 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-1 hover:translate-y-1 transition-all">
+                    <i data-lucide="phone" class="w-8 h-8 mb-4 group-hover:text-lime-600"></i>
+                    <span class="font-bold text-lg md:text-xl">+49 176 7685 6850</span>
+                    <span class="font-mono text-xs text-zinc-500 mt-2">CALL OR WHATSAPP</span>
+                </a>
+            </div>
+
+            <div class="flex flex-col md:flex-row justify-between items-end border-t-2 border-black pt-6 font-mono text-xs uppercase">
+                <div class="text-left mb-4 md:mb-0">
+                    <p>© 2026 MICHAEL DYCK</p>
+                    <p>NEUSS, DEUTSCHLAND</p>
+                </div>
+                <div class="text-right">
+                    <p>IMPRESSUM // DATENSCHUTZ</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Noise Background Overlay -->
+        <div class="absolute inset-0 pointer-events-none opacity-20" style="background-image: url('https://grainy-gradients.vercel.app/noise.svg');"></div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // --- DATA ---
+        const skills = [
+            "ADOBE_CC", "FIGMA_XD", "WEBFLOW", 
+            "HTML_CSS", "VIDEO_EDITING", "FOTOGRAFIE", "UI_UX"
+        ];
+
+        const history = [
+            {
+                year: "2022 – 2024",
+                role: "WEB & CONTENT",
+                company: "CREATIVE PERFORMANCE GMBH",
+                details: "Social Media Kampagnen, Webdesign, Content Creation"
+            },
+            {
+                year: "2019 – 2022",
+                role: "AUSBILDUNG: MEDIENGESTALTER",
+                company: "WWWE GMBH DÜSSELDORF",
+                details: "Digital & Print, Kundenprojekte, Layout-Entwicklung"
+            },
+            {
+                year: "2017 – 2019",
+                role: "FACHHOCHSCHULREIFE",
+                company: "BTI BERUFSKOLLEG",
+                details: "Schwerpunkt Gestaltung & Visuelle Kommunikation"
+            }
+        ];
+
+        const projects = [
+            {
+                id: 1,
+                title: "ARCHITEKTUR BÜRO",
+                category: "UX/UI",
+                tags: "WEB DESIGN / PORTFOLIO",
+                description: "Minimalistisches Webdesign für ein Architekturbüro. Fokus auf visuelle Klarheit und bildgewaltige Projektpräsentation.",
+                image: "https://placehold.co/800x600/ccff00/000000?text=ARCHITEKTUR+WEB",
+                year: "2024"
+            },
+            {
+                id: 2,
+                title: "WILLEM DAFOE",
+                category: "GRAFIK",
+                tags: "EDITORIAL / CONCEPT",
+                description: "Experimentelles Design-Konzept. Visuelle Charakterstudie, Collagen und Editorial Layouts.",
+                image: "https://placehold.co/800x600/000000/ffffff?text=WILLEM+DAFOE",
+                year: "2023"
+            },
+            {
+                id: 3,
+                title: "REISE PORTAL",
+                category: "UX/UI",
+                tags: "INTERFACE / BOOKING",
+                description: "Benutzerfreundliches Interface für ein Reiseunternehmen. Optimierte Buchungsstrecken und Conversion-Fokus.",
+                image: "https://placehold.co/800x600/ffffff/000000?text=TRAVEL+UI",
+                year: "2023"
+            },
+            {
+                id: 4,
+                title: "MDH FLYER",
+                category: "GRAFIK",
+                tags: "PRINT / BRANDING",
+                description: "Promotion-Konzept für die Mediadesign Hochschule. Typografie-getriebenes Layout für Print-Kampagnen.",
+                image: "https://placehold.co/800x600/333333/ccff00?text=MDH+CONCEPT",
+                year: "2023"
+            },
+            {
+                id: 5,
+                title: "AGENTUR WEBSITE",
+                category: "UX/UI",
+                tags: "CORPORATE / WEBFLOW",
+                description: "Corporate Website für eine Digitalagentur. Klare Strukturen und modernes Grid-Layout.",
+                image: "https://placehold.co/800x600/e5e5e5/000000?text=AGENCY+WEB",
+                year: "2023"
+            },
+            {
+                id: 6,
+                title: "ALIEN POSTER",
+                category: "GRAFIK",
+                tags: "POSTER ART / TYPO",
+                description: "Filmplakat-Neuinterpretation. Düstere Atmosphäre durch experimentelle Typografie und Bildbearbeitung.",
+                image: "https://placehold.co/800x600/1a1a1a/ccff00?text=ALIEN+ART",
+                year: "2022"
+            },
+            {
+                id: 7,
+                title: "STREET PHOTOGRAPHY",
+                category: "PRIVAT",
+                tags: "FOTOGRAFIE / ANALOG",
+                description: "Persönliche Fotoserie aus Düsseldorf und Umgebung. Fokus auf urbane Strukturen und Licht.",
+                image: "https://placehold.co/800x600/555555/ffffff?text=PRIVATE+PHOTO",
+                year: "2024"
+            }
+        ];
+
+        // --- RENDER FUNCTIONS ---
+
+        function renderSkills() {
+            const container = document.getElementById('skills-container');
+            container.innerHTML = skills.map(skill => 
+                `<span class="bg-black text-white px-2 py-1 text-xs font-mono">${skill}</span>`
+            ).join('');
+        }
+
+        function renderHistory() {
+            const container = document.getElementById('history-container');
+            container.innerHTML = history.map(item => `
+                <div class="relative pl-8 border-l-2 border-zinc-700 hover:border-[#ccff00] transition-colors group">
+                    <span class="absolute -left-[9px] top-0 w-4 h-4 bg-black border-2 border-zinc-700 group-hover:border-[#ccff00] group-hover:bg-[#ccff00] transition-colors"></span>
+                    <span class="font-mono text-[#ccff00] text-sm mb-1 block">${item.year}</span>
+                    <h3 class="text-2xl font-bold uppercase mb-2">${item.role}</h3>
+                    <div class="text-sm font-bold tracking-widest text-zinc-500 mb-4">${item.company}</div>
+                    <p class="font-mono text-zinc-400 max-w-lg">${item.details}</p>
+                </div>
+            `).join('');
+        }
+
+        function renderProjects(filter = "ALL") {
+            const container = document.getElementById('projects-container');
+            const filtered = filter === "ALL" ? projects : projects.filter(p => p.category === filter);
+
+            if (filtered.length === 0) {
+                container.innerHTML = `
+                    <div class="py-24 text-center font-mono text-xl border-b-2 border-black">
+                        [NO_DATA_FOUND]: KEINE PROJEKTE IN DIESER KATEGORIE.
+                    </div>`;
+                return;
+            }
+
+            container.innerHTML = filtered.map((project, index) => `
+                <div class="group border-b-2 border-black hover:bg-[#ccff00] transition-colors duration-0 bg-white animate-fade-in-up">
+                    <div class="container mx-auto px-4 md:px-6 py-12 md:py-20 flex flex-col md:flex-row gap-8 md:gap-12 relative">
+                        <!-- Index Number -->
+                        <span class="absolute top-4 right-4 md:top-8 md:left-6 font-black text-6xl md:text-9xl text-black/5 md:text-black/10 z-0 pointer-events-none">
+                            0${index + 1}
+                        </span>
+
+                        <!-- Image -->
+                        <div class="w-full md:w-5/12 relative z-10">
+                            <div class="border-2 border-black bg-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] group-hover:shadow-[0px_0px_0px_0px_rgba(0,0,0,1)] transition-all duration-200 aspect-[4/3] overflow-hidden">
+                                <img src="${project.image}" alt="${project.title}" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-300">
+                            </div>
+                        </div>
+
+                        <!-- Content -->
+                        <div class="w-full md:w-7/12 flex flex-col justify-between relative z-10">
+                            <div>
+                                <div class="flex items-center gap-4 mb-4">
+                                    <span class="bg-black text-white px-3 py-1 font-mono text-xs uppercase font-bold">${project.year}</span>
+                                    <span class="font-mono text-xs uppercase font-bold tracking-widest border border-black px-3 py-1 rounded-full group-hover:border-black/50">${project.tags}</span>
+                                </div>
+                                <h3 class="text-4xl md:text-6xl font-black uppercase mb-6 leading-[0.9] tracking-tighter">${project.title}</h3>
+                                <p class="font-mono text-sm md:text-lg max-w-md border-l-4 border-black pl-4 mb-8">${project.description}</p>
+                            </div>
+                            
+                            <div class="flex justify-end md:justify-start">
+                                <button class="flex items-center gap-2 font-bold uppercase hover:underline decoration-4 underline-offset-4">
+                                    VIEW PROJECT <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-2 transition-transform"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            
+            // Re-initialize icons for newly added content
+            lucide.createIcons();
+        }
+
+        // --- CLOCK ---
+        function startClock() {
+            const clockEl = document.getElementById('clock');
+            const update = () => {
+                const now = new Date();
+                clockEl.textContent = now.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit', second: '2-digit' }) + ' CET';
+            };
+            setInterval(update, 1000);
+            update();
+        }
+
+        // --- INIT & EVENT LISTENERS ---
+        document.addEventListener('DOMContentLoaded', () => {
+            renderSkills();
+            renderHistory();
+            renderProjects("ALL");
+            startClock();
+            lucide.createIcons();
+
+            // Filter Buttons Logic
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Update Active State Visuals
+                    buttons.forEach(b => {
+                        b.classList.remove('bg-black', 'text-[#ccff00]', 'translate-x-[2px]', 'translate-y-[2px]', 'shadow-[2px_2px_0px_0px_rgba(204,255,0,1)]');
+                        b.classList.add('bg-white', 'text-black', 'shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]');
+                    });
+                    
+                    // Set clicked button to active
+                    btn.classList.remove('bg-white', 'text-black', 'shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]');
+                    btn.classList.add('bg-black', 'text-[#ccff00]', 'translate-x-[2px]', 'translate-y-[2px]', 'shadow-[2px_2px_0px_0px_rgba(204,255,0,1)]');
+
+                    // Filter Projects
+                    const filter = btn.getAttribute('data-filter');
+                    renderProjects(filter);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
